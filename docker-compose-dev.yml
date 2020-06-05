@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+    vscode:
+        image: zaioll/vscode-php:latest
+        container_name: yii2-vscode
+        privileged: true
+        environment:
+            DISPLAY: 'unix$DISPLAY'
+            POSTGRES_PASSWORD : 'senha@facil'
+            POSTGRES_HOST     : 'yii-db'
+            POSTGRES_DB       : 'yii2'
+            POSTGRES_USER     : 'postgres'
+        volumes:
+            - ~/.composer-docker/cache:/root/.composer/cache:delegated
+            - ./:/app:delegated
+            - /tmp/.X11-unix:/tmp/.X11-unix
+            - .:/var/www/html

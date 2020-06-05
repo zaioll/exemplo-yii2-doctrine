@@ -1,0 +1,52 @@
+version: '3.5'
+
+services:
+  php-fpm:
+    image: zaioll/php-zts:7.2
+    container_name: yii2-php
+    volumes:
+      - .:/var/www/html
+      - sock:/var/run/php
+    external_links:
+      - db
+    environment:
+      ENABLE_XDEBUG: 1
+      XDEBUG_CONFIG: 'remote_host=yii2-vscode default_enable=1 remote_autostart=1 remote_enable=1 idekey=VSCODE'
+      ENABLE_OPCACHE: 0
+      POSTGRES_PASSWORD: 'senha@facil'
+      POSTGRES_HOST: yii2-db
+      POSTGRES_DB: yii2
+      POSTGRES_USER: postgres
+    depends_on:
+      - db
+    ports:
+      - 7200:7200
+#  web:
+#    image: zaioll/nginx:latest
+#    container_name: yii2-web
+#    volumes:
+#      - .:/var/www/html
+#      - sock:/var/run/php
+#      - ./docker/nginx:/etc/nginx/sites-enabled
+#    depends_on:
+#      - php-fpm
+#    ports:
+#      - 7200:7200
+  db:
+    image: zaioll/postgres:9.6
+    container_name: yii2-db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - .:/var/www/html
+      - ./.install:/docker-entrypoint-initdb.d/
+    environment:
+      POSTGRES_PASSWORD: 'senha@facil'
+      POSTGRES_HOST: yii2-db
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_DB: yii2
+      POSTGRES_USER: postgres
+    ports:
+      - 5432:5432
+volumes:
+  sock:
+  pgdata:
