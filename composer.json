@@ -16,6 +16,7 @@
     "require": {
         "php": ">=5.6.0",
         "yiisoft/yii2": "~2.0.14",
+        "zaioll/yii2-doctrine": "dev-wip",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0"
     },
@@ -40,6 +41,10 @@
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
+        },
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/zaioll-php/yii2-doctrine"
         }
     ]
 }

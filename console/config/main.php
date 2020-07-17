@@ -19,7 +19,10 @@ return [
         'fixture' => [
             'class' => 'yii\console\controllers\FixtureController',
             'namespace' => 'common\fixtures',
-          ],
+        ],
+        'doctrine' => [
+            'class' => Zaioll\YiiDoctrine\DoctrineController::class,
+        ]
     ],
     'components' => [
         'log' => [

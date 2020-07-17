@@ -9,5 +9,19 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'doctrine' => [
+            'class' => Zaioll\YiiDoctrine\Doctrine::class,
+            'dbal' => [
+                'url' => "pgsql://postgres:senha%40facil@yii2-db:5432/yii2",
+            ],
+            'entityPath' => [
+                '@common/models/entities',
+                '@backend/models/entities',
+                '@console/models/entities',
+                '@frontend/models/entities',
+            ],
+            'migrationsNamespace'   => 'console\migrations\orm',
+            'migrationsPath'        => '@console/migrations/orm',
+        ],
     ],
 ];
