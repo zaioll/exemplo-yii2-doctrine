@@ -3,7 +3,7 @@ namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
-use common\models\User;
+use common\models\entities\User;
 
 /**
  * Signup form
@@ -47,15 +47,16 @@ class SignupForm extends Model
         if (!$this->validate()) {
             return null;
         }
-        
+
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
-        return $user->save() && $this->sendEmail($user);
-
+        if ($user->save() && $this->sendEmail($user)) {
+            return \Yii::$app->doctrine->entityManager->flush();
+        }
     }
 
     /**
