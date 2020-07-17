@@ -20,6 +20,10 @@ return [
             'class' => 'yii\console\controllers\FixtureController',
             'namespace' => 'common\fixtures',
         ],
+        'migrate' => [
+            'class' => 'yii\console\controllers\MigrateController',
+            'migrationTable' => 'yii_migration',
+        ],
         'doctrine' => [
             'class' => Zaioll\YiiDoctrine\DoctrineController::class,
         ]
