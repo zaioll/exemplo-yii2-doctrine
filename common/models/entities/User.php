@@ -19,7 +19,7 @@ class User extends DataMapper implements IdentityInterface
 
     /**
      * @Mapping\Id
-     * @Mapping\Column(type="integer")
+     * @Mapping\Column(type="bigint")
      * @Mapping\GeneratedValue(strategy="AUTO")
      *
      * @var int
